@@ -1,0 +1,7 @@
+# SUT.toml
+name = "picocoap-client"
+tags = ["cli", "example"]
+component_paths = [
+    "./my-component",
+]
+

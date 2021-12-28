@@ -1,0 +1,8 @@
+# Modality.toml
+collector_connections = [
+    "udp://127.0.0.1:34333"
+]
+control_connections = [
+    "udp://127.0.0.1:34555",
+    #"http://example.com/path"
+]

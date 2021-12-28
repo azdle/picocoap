@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/patrick/picocoap/src/coap.c
+stddef.h
+-
+string.h
+-
+coap.h
+/home/patrick/picocoap/src/coap.h
+
+/home/patrick/picocoap/src/coap.h
+stdint.h
+-
+
