@@ -45,12 +45,10 @@ int main(void)
 
   srand(time(NULL));
 
-	printf("ptr: %p\n", g_producer_probe);
-
-  MODALITY_PROBE_INIT(
+  assert(MODALITY_PROBE_INIT(
     &g_producer_probe_buffer[0],
     sizeof(g_producer_probe_buffer),
-    0, // TODO: probably make an enum?
+    1, // TODO: probably make an enum?
     MODALITY_PROBE_TIME_RESOLUTION_UNSPECIFIED,
     MODALITY_PROBE_WALL_CLOCK_ID_LOCAL_ONLY,
     NULL,
@@ -58,9 +56,7 @@ int main(void)
     &g_producer_probe,
     MODALITY_TAGS("coap", "cli"),
     "picocoap posix example probe"
-  );
-
-	printf("ptr: %p\n", g_producer_probe);
+  ) == 0);
 
   int rv;
   struct addrinfo modalityhints, exohints, *servinfo, *q;
@@ -146,7 +142,6 @@ int main(void)
     printf("--------------------------------------------------------------------------------\n");
 
     MODALITY_PROBE_RECORD(g_producer_probe, SEND_STARTED);
-    modality_tick(g_producer_probe);
 
     // Build Message
     coap_init_pdu(&msg_send);
@@ -166,6 +161,7 @@ int main(void)
     }
 
 
+    modality_tick(g_producer_probe);
     MODALITY_PROBE_RECORD(g_producer_probe, PACKET_SENT);
 
     printf("Sent.\n");
@@ -285,7 +281,6 @@ void coap_pretty_print(coap_pdu *pdu)
 
 void send_modality_report(modality_probe *probe) {
 	size_t report_size;
-	printf("ptrs: %p %p %p\n", probe, g_producer_probe_buffer, &g_producer_probe_buffer[0]);
 	const size_t err = modality_probe_report(
 			probe,
 			&g_producer_probe_buffer[0],
@@ -297,14 +292,27 @@ void send_modality_report(modality_probe *probe) {
 	assert(err == MODALITY_PROBE_ERROR_OK);
 
 	if (report_size != 0) {
-		const ssize_t status = sendto(
-				g_report_socket,
-				&g_producer_probe_buffer[0], // isn't this a circular buffer?
-				report_size,
-				0,
-				(const struct sockaddr*) &g_collector_addr,
-				sizeof(g_collector_addr));
-		assert(status != -1);
+
+  	struct addrinfo *q;
+		  // loop through all the results and make a socket
+		  for(q = g_collector_addr; q != NULL; q = q->ai_next) {
+
+			const ssize_t status = sendto(
+					g_report_socket,
+					&g_producer_probe_buffer[0], // isn't this a circular buffer?
+					report_size,
+					0,
+					g_collector_addr->ai_addr,
+					g_collector_addr->ai_addrlen);
+			if (status == -1)
+      		  		fprintf(stderr, "%s\n", strerror(errno));
+			else
+				break;
+			//assert(status != -1);
+		  }
+
+		  if(q == NULL)
+			  assert(false);
 	}
 }
 
@@ -316,7 +324,7 @@ void recieve_modailty_control(modality_probe *probe)
   struct timeval tv;
   fd_set readfds;
 
-  tv.tv_sec = 4;
+  tv.tv_sec = 0;
   tv.tv_usec = 0;
 
   FD_ZERO(&readfds);
@@ -325,8 +333,6 @@ void recieve_modailty_control(modality_probe *probe)
 
   // don't care about writefds and exceptfds:
   select(g_report_socket+1, &readfds, NULL, NULL, &tv);
-
-  assert(FD_ISSET(g_report_socket, &readfds));
 
   if (FD_ISSET(g_report_socket, &readfds)) {
     size_t length = recvfrom(g_report_socket, (void *)bytes, sizeof(bytes), 0, NULL, NULL);

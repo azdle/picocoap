@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(picocoap)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 # 1. Load ModalityProbe config package
 find_package(ModalityProbe REQUIRED)
 
