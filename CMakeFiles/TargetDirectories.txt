@@ -1,6 +1,0 @@
-/home/patrick/picocoap/CMakeFiles/rebuild_cache.dir
-/home/patrick/picocoap/CMakeFiles/edit_cache.dir
-/home/patrick/picocoap/CMakeFiles/picocoap-client_generated_modality_probe_manifest.dir
-/home/patrick/picocoap/CMakeFiles/picocoap-client.dir
-/home/patrick/picocoap/CMakeFiles/picocoap-client_generated_modality_probe_header.dir
-/home/patrick/picocoap/CMakeFiles/picocoap.dir

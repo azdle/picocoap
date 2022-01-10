@@ -1,2 +1,0 @@
-/usr/bin/ar qc libpicocoap.a  CMakeFiles/picocoap.dir/src/coap.c.o
-/usr/bin/ranlib libpicocoap.a

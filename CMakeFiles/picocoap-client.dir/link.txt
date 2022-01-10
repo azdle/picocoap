@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/picocoap-client.dir/examples/posix/client.c.o  -o picocoap-client  libpicocoap.a /usr/lib/libmodality_probe.so /usr/lib/libmodality_probe_support.so 

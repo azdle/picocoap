@@ -1,3 +1,7 @@
 *.dSYM
 *.o
 CMakeCache.txt
+CMakeFiles
+
+# Binaries
+picocoap-client
