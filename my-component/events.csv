@@ -1,18 +1,27 @@
 component_id,id,name,description,tags,type_hint,file,line
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741822,MODALITY_PRODUCED_EXTERNAL_REPORT,The probe produced a log report for transmission to the backend for external analysis,INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741821,MODALITY_LOG_ITEMS_MISSED,"Some log items were overwritten without successfully getting reported to the collector, the number of missed entries is storedin the payload",INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741820,MODALITY_LOGICAL_CLOCK_OVERFLOWED,A logical clock's count reached the maximum trackable value,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741819,MODALITY_NUM_CLOCKS_OVERFLOWED,The probe did not have enough memory reserved to store enough logical clocks to track all of the unique neighbors that attempt to communicate with it,INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741818,MODALITY_INSUFFICIENT_REPORT_BUFFER_SIZE,The report destination buffer is too small to fit a header and/or the frontier clocks,INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741817,MODALITY_PROBE_INITIALIZED,The probe successfully initialized itself,INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741816,MODALITY_INVALID_NEXT_EPOCH_SEQ_ID,"The probe is configured to track restarts, but the user's implementation returned an invalid zero value or a None option variant.",INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741815,MODALITY_WALL_CLOCK_TIME_ONLY,Reserved for indicating wall clock time,INTERNAL,,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741694,MODALITY_MUTATION_INJECTION_TRIGGERED,Mutation injection triggered,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741693,MODALITY_MUTATION_INJECTION_SUCCESS,Mutation injection succeeded,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741692,MODALITY_MUTATION_INJECTION_ERROR,Mutation injection failed,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741691,MODALITY_SCOPE_BEGIN,Modulus stimulus scope began,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741690,MODALITY_SCOPE_END,Modulus stimulus scope ended,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741689,DYNAMIC_EXPECTATION,Modulus stimulus dynamic expectation,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741688,MODALITY_CONTROL_MSG_DROPPED,Modulus control message dropped,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741687,MODALITY_TRIGGER_DROPPED,Modulus trigger control block dropped,INTERNAL,u32,,
-cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2,1073741686,MODALITY_MUTATION_EPOCH_ADVANCED,Mutation epoch advanced,INTERNAL,u16,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741822,MODALITY_PRODUCED_EXTERNAL_REPORT,The probe produced a log report for transmission to the backend for external analysis,INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741821,MODALITY_LOG_ITEMS_MISSED,"Some log items were overwritten without successfully getting reported to the collector, the number of missed entries is storedin the payload",INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741820,MODALITY_LOGICAL_CLOCK_OVERFLOWED,A logical clock's count reached the maximum trackable value,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741819,MODALITY_NUM_CLOCKS_OVERFLOWED,The probe did not have enough memory reserved to store enough logical clocks to track all of the unique neighbors that attempt to communicate with it,INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741818,MODALITY_INSUFFICIENT_REPORT_BUFFER_SIZE,The report destination buffer is too small to fit a header and/or the frontier clocks,INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741817,MODALITY_PROBE_INITIALIZED,The probe successfully initialized itself,INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741816,MODALITY_INVALID_NEXT_EPOCH_SEQ_ID,"The probe is configured to track restarts, but the user's implementation returned an invalid zero value or a None option variant.",INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741815,MODALITY_WALL_CLOCK_TIME_ONLY,Reserved for indicating wall clock time,INTERNAL,,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741694,MODALITY_MUTATION_INJECTION_TRIGGERED,Mutation injection triggered,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741693,MODALITY_MUTATION_INJECTION_SUCCESS,Mutation injection succeeded,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741692,MODALITY_MUTATION_INJECTION_ERROR,Mutation injection failed,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741691,MODALITY_SCOPE_BEGIN,Modulus stimulus scope began,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741690,MODALITY_SCOPE_END,Modulus stimulus scope ended,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741689,DYNAMIC_EXPECTATION,Modulus stimulus dynamic expectation,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741688,MODALITY_CONTROL_MSG_DROPPED,Modulus control message dropped,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741687,MODALITY_TRIGGER_DROPPED,Modulus trigger control block dropped,INTERNAL,u32,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1073741686,MODALITY_MUTATION_EPOCH_ADVANCED,Mutation epoch advanced,INTERNAL,u16,,
+90c81b39-2fd2-48c4-a31d-57fe041acd30,1,SEND_STARTED,,,,picocoap/examples/posix/client.c,131
+90c81b39-2fd2-48c4-a31d-57fe041acd30,2,MESSAGE_BUILT,,,,picocoap/examples/posix/client.c,142
+90c81b39-2fd2-48c4-a31d-57fe041acd30,3,PACKET_SENT,,,,picocoap/examples/posix/client.c,152
+90c81b39-2fd2-48c4-a31d-57fe041acd30,4,START_RECEIVE_WAIT,,,,picocoap/examples/posix/client.c,163
+90c81b39-2fd2-48c4-a31d-57fe041acd30,5,RECEIVE_TIMEOUT,,,,picocoap/examples/posix/client.c,176
+90c81b39-2fd2-48c4-a31d-57fe041acd30,6,SOCKET_READY,,,,picocoap/examples/posix/client.c,188
+90c81b39-2fd2-48c4-a31d-57fe041acd30,7,VALID_PACKET,,,,picocoap/examples/posix/client.c,204
+90c81b39-2fd2-48c4-a31d-57fe041acd30,8,VALID_RESPONSE,,,,picocoap/examples/posix/client.c,209
+90c81b39-2fd2-48c4-a31d-57fe041acd30,9,INVALID_PACKET,,,,picocoap/examples/posix/client.c,215

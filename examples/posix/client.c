@@ -20,19 +20,6 @@ void hex_dump(uint8_t* bytes, size_t len);
 void coap_pretty_print(coap_pdu*);
 void modality_tick(modality_probe *probe);
 
-enum events {
-	SEND_STARTED,
-	MESSAGE_BUILT,
-	PACKET_SENT,
-	START_RECEIVE_WAIT,
-	RECEIVE_TIMEOUT,
-	SOCKET_READY,
-	PACKET_RECEVIED,
-	VALID_PACKET,
-	VALID_RESPONSE,
-	INVALID_PACKET
-};
-
 modality_probe *g_producer_probe = MODALITY_PROBE_NULL_INITIALIZER;
 uint8_t g_producer_probe_buffer[1024];
 int g_report_socket;
@@ -48,7 +35,7 @@ int main(void)
   assert(MODALITY_PROBE_INIT(
     &g_producer_probe_buffer[0],
     sizeof(g_producer_probe_buffer),
-    1, // TODO: probably make an enum?
+    CLIENT_MAIN_PROCESS_PROBE,
     MODALITY_PROBE_TIME_RESOLUTION_UNSPECIFIED,
     MODALITY_PROBE_WALL_CLOCK_ID_LOCAL_ONLY,
     NULL,
@@ -208,7 +195,7 @@ int main(void)
     }
 
 
-    MODALITY_PROBE_RECORD(g_producer_probe, PACKET_RECEVIED, msg_recv.buf);
+    //MODALITY_PROBE_RECORD(g_producer_probe, PACKET_RECEVIED, msg_recv.buf);
 
     msg_recv.len = bytes_recv;
 

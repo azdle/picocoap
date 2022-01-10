@@ -1,5 +1,5 @@
 name = "my-component"
-id = "cc2d9fe1-6f30-4f6b-8466-f9165eb7f9d2"
-code_hash = "855b8cea9ba7c539dea588766b01b39679d33457813d74ef787558b904bbdbee"
-instrumentation_hash = "6f72caa7c8a881d9c9a14c306a0888a674cbec289cd4222ea3064d86cd2b68e0"
+id = "90c81b39-2fd2-48c4-a31d-57fe041acd30"
+code_hash = "0a5561c9bdfea29dfe4d1972acafbd500b7ad09161a9defbf30819acff6a9dab"
+instrumentation_hash = "2d6058577150cbd1d2dbe1faa0ac1d3eac0963d906b2dd721a13e9ae8a6cff90"
 tags = []
