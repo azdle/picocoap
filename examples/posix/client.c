@@ -281,10 +281,11 @@ void coap_pretty_print(coap_pdu *pdu)
 
 void send_modality_report(modality_probe *probe) {
 	size_t report_size;
+	uint8_t report_buffer[1500];
 	const size_t err = modality_probe_report(
 			probe,
-			&g_producer_probe_buffer[0],
-			sizeof(g_producer_probe_buffer),
+			report_buffer,
+			sizeof(report_buffer),
 			&report_size);
 
 	printf("Modality Err: %li\n", err);
@@ -299,7 +300,7 @@ void send_modality_report(modality_probe *probe) {
 
 			const ssize_t status = sendto(
 					g_report_socket,
-					&g_producer_probe_buffer[0], // isn't this a circular buffer?
+					report_buffer, // isn't this a circular buffer?
 					report_size,
 					0,
 					g_collector_addr->ai_addr,
