@@ -1,0 +1,11 @@
+name = "send-skip"
+tags = []
+source_file = "examples/posix/client.c"
+source_line = 151
+
+[[params]]
+name = "send-skip"
+type = "Boolean"
+
+[params.constraints]
+minimum_effect_value = false

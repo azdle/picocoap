@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named picocoap-client_generated_modality_probe_mutators
+
+# Build rule for target.
+picocoap-client_generated_modality_probe_mutators: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 picocoap-client_generated_modality_probe_mutators
+.PHONY : picocoap-client_generated_modality_probe_mutators
+
+# fast build rule for target.
+picocoap-client_generated_modality_probe_mutators/fast:
+	$(MAKE) -f CMakeFiles/picocoap-client_generated_modality_probe_mutators.dir/build.make CMakeFiles/picocoap-client_generated_modality_probe_mutators.dir/build
+.PHONY : picocoap-client_generated_modality_probe_mutators/fast
+
+#=============================================================================
 # Target rules for targets named picocoap-client_generated_modality_probe_manifest
 
 # Build rule for target.
@@ -189,6 +202,33 @@ examples/posix/client.c.s:
 	$(MAKE) -f CMakeFiles/picocoap-client.dir/build.make CMakeFiles/picocoap-client.dir/examples/posix/client.c.s
 .PHONY : examples/posix/client.c.s
 
+generated_mutators/send_skip.o: generated_mutators/send_skip.c.o
+
+.PHONY : generated_mutators/send_skip.o
+
+# target to build an object file
+generated_mutators/send_skip.c.o:
+	$(MAKE) -f CMakeFiles/picocoap-client.dir/build.make CMakeFiles/picocoap-client.dir/generated_mutators/send_skip.c.o
+.PHONY : generated_mutators/send_skip.c.o
+
+generated_mutators/send_skip.i: generated_mutators/send_skip.c.i
+
+.PHONY : generated_mutators/send_skip.i
+
+# target to preprocess a source file
+generated_mutators/send_skip.c.i:
+	$(MAKE) -f CMakeFiles/picocoap-client.dir/build.make CMakeFiles/picocoap-client.dir/generated_mutators/send_skip.c.i
+.PHONY : generated_mutators/send_skip.c.i
+
+generated_mutators/send_skip.s: generated_mutators/send_skip.c.s
+
+.PHONY : generated_mutators/send_skip.s
+
+# target to generate assembly for a file
+generated_mutators/send_skip.c.s:
+	$(MAKE) -f CMakeFiles/picocoap-client.dir/build.make CMakeFiles/picocoap-client.dir/generated_mutators/send_skip.c.s
+.PHONY : generated_mutators/send_skip.c.s
+
 src/coap.o: src/coap.c.o
 
 .PHONY : src/coap.o
@@ -223,6 +263,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... picocoap-client_generated_modality_probe_mutators"
 	@echo "... edit_cache"
 	@echo "... picocoap-client_generated_modality_probe_manifest"
 	@echo "... picocoap-client"
@@ -231,6 +272,9 @@ help:
 	@echo "... examples/posix/client.o"
 	@echo "... examples/posix/client.i"
 	@echo "... examples/posix/client.s"
+	@echo "... generated_mutators/send_skip.o"
+	@echo "... generated_mutators/send_skip.i"
+	@echo "... generated_mutators/send_skip.s"
 	@echo "... src/coap.o"
 	@echo "... src/coap.i"
 	@echo "... src/coap.s"

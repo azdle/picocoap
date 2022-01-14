@@ -12,7 +12,9 @@
 #include <time.h>
 
 #include <modality/probe.h>
+#include <modality/mutator.h>
 #include "../../generated_component_definitions.h"
+#include "../../generated_mutators/send_skip.h"
 
 #include "../../src/coap.h"
  
@@ -124,8 +126,13 @@ int main(void)
       return 2;
   }
  
+  modality_tick(g_producer_probe);
+  sleep(2);
+  modality_tick(g_producer_probe);
+
   for (uint8_t sent_count = 1; ; sent_count++) 
   {
+    bool send_skip = false;
     printf("--------------------------------------------------------------------------------\n");
 
     MODALITY_PROBE_RECORD(g_producer_probe, SEND_STARTED);
@@ -141,10 +148,23 @@ int main(void)
 
     MODALITY_PROBE_RECORD(g_producer_probe, MESSAGE_BUILT);
 
+    MODALITY_MUTATOR(
+      g_producer_probe,
+      SEND_SKIP,
+      send_skip,
+      MODALITY_PARAM_DEF(
+        BOOLEAN,
+        false
+      ),
+      &send_skip,
+      sizeof(send_skip));
+
     // Send Message
-    if ((bytes_sent = sendto(remotesock, msg_send.buf, msg_send.len, 0, q->ai_addr, q->ai_addrlen)) == -1){
-      fprintf(stderr, "Failed to Send Message\n");
-      return 2;
+    if(!send_skip){
+      if ((bytes_sent = sendto(remotesock, msg_send.buf, msg_send.len, 0, q->ai_addr, q->ai_addrlen)) == -1){
+        fprintf(stderr, "Failed to Send Message\n");
+        return 2;
+      }
     }
 
 
@@ -161,6 +181,7 @@ int main(void)
     tv.tv_usec = 0;
 
     MODALITY_PROBE_RECORD(g_producer_probe, START_RECEIVE_WAIT);
+    modality_tick(g_producer_probe);
 
     FD_ZERO(&readfds);
     FD_SET(remotesock, &readfds);
@@ -177,9 +198,11 @@ int main(void)
 
 	    if (sent_count > 3) {
 		printf("Failed\n");
+    		modality_tick(g_producer_probe);
 	    	return 1;
 	    } else {
 		printf("Retrying\n");
+    		modality_tick(g_producer_probe);
 		continue;
 	    }
     }
@@ -191,11 +214,11 @@ int main(void)
     bytes_recv = recvfrom(remotesock, (void *)msg_recv.buf, msg_recv.max, 0, q->ai_addr, &q->ai_addrlen);
     if (bytes_recv < 0) {
       fprintf(stderr, "%s\n", strerror(errno));
+      modality_tick(g_producer_probe);
       exit(EXIT_FAILURE);
     }
 
-
-    //MODALITY_PROBE_RECORD(g_producer_probe, PACKET_RECEVIED, msg_recv.buf);
+    MODALITY_PROBE_RECORD_W_I32(g_producer_probe, PACKET_RECEVIED, bytes_recv);
 
     msg_recv.len = bytes_recv;
 
@@ -209,7 +232,8 @@ int main(void)
       MODALITY_PROBE_RECORD(g_producer_probe, VALID_RESPONSE);
         printf("Is Response to Last Message\n");
         coap_pretty_print(&msg_recv);
-	return 0;
+    	modality_tick(g_producer_probe);
+	break;
       }
     }else{
       MODALITY_PROBE_RECORD(g_producer_probe, INVALID_PACKET);
@@ -217,8 +241,12 @@ int main(void)
       hex_dump(msg_recv.buf, msg_recv.len);
     }
 
+    modality_tick(g_producer_probe);
     sleep(1); // One Second
   }
+
+  modality_tick(g_producer_probe);
+  printf("exited normally\n");
 }
 
 void hex_dump(uint8_t* bytes, size_t len)
@@ -275,10 +303,11 @@ void send_modality_report(modality_probe *probe) {
 			sizeof(report_buffer),
 			&report_size);
 
-	printf("Modality Err: %li\n", err);
+	printf("Send Report\n");
 
 	assert(err == MODALITY_PROBE_ERROR_OK);
 
+	printf("Report Len: %li\n", report_size);
 	if (report_size != 0) {
 
   	struct addrinfo *q;
